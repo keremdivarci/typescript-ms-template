@@ -1,6 +1,11 @@
 {
-    "watch": ["./"],
-    "ext": "ts,json,env",
-    "ignore": ["./node_modules", "./dist"],
-    "exec": "ts-node ./index.ts" 
-  }
+  "watch": [
+    "./"
+  ],
+  "ext": "ts,json,env",
+  "ignore": [
+    "./node_modules",
+    "./dist"
+  ],
+  "exec": "ts-node ./index.ts"
+}

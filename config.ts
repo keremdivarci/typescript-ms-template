@@ -1,15 +1,15 @@
-import * as dotenv from 'dotenv';
+import * as dotenv from 'dotenv'
 
-dotenv.config();
+dotenv.config()
 
 type config = {
-    PORT: number,
-    MONGO_CONNECTION: string,
-    JWT_SECRET: string,
+    PORT: number
+    MONGO_CONNECTION: string
+    JWT_SECRET: string
     SESSION_SECRET: string
 }
 
-const env = process.env as any;
+const env = process.env as any
 
 const variables: config = {
     PORT: env.PORT,
@@ -18,4 +18,4 @@ const variables: config = {
     SESSION_SECRET: env.SESSION_SECRET
 }
 
-export default variables;
+export default variables

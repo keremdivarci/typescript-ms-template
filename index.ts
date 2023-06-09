@@ -1,4 +1,4 @@
-import {connection} from './database'
-import {app} from './api'
+import { connection } from './database'
+import { app } from './api'
 
-export {connection, app}
+export { connection, app }
