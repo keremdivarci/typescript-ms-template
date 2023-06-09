@@ -5,7 +5,8 @@
   "ext": "ts,json,env",
   "ignore": [
     "./node_modules",
-    "./dist"
+    "./dist",
+    "./logic/types"
   ],
-  "exec": "ts-node ./index.ts"
+  "exec": "ts-node ./logic/validators/joi-to-interface.ts && ts-node ./index.ts"
 }

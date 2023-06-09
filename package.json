@@ -19,9 +19,11 @@
   "devDependencies": {
     "@types/express-session": "^1.17.7",
     "nodemon": "^2.0.22",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "joi-to-typescript": "^4.4.1"
   },
   "scripts": {
-    "start": "nodemon"
+    "start": "ts-node index.ts",
+    "dev": "nodemon"
   }
 }
