@@ -1,5 +1,9 @@
-import { prop, getModelForClass } from '@typegoose/typegoose'
+import { prop, getModelForClass, modelOptions } from '@typegoose/typegoose'
 
+@modelOptions({
+    schemaOptions: { collection: 'sample', versionKey: false },
+    options: { allowMixed: 0 }
+})
 export class Sample {
     @prop({ required: true })
     public name!: string
