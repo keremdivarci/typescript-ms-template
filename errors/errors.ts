@@ -140,3 +140,13 @@ export class ItemExistsError extends BaseError {
         return [{ status: this.status, detail: this.detail, message: this.message }]
     }
 }
+
+export class CreateError extends BaseError {
+    constructor(message: string = '') {
+        super(message, 400, 'Error creating item, please try again later.')
+    }
+
+    serializeErrors() {
+        return [{ status: this.status, detail: this.detail, message: this.message }]
+    }
+}
