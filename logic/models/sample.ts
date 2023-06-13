@@ -4,8 +4,6 @@ import * as types from '../types/sample'
 
 import { SampleModel, Sample } from '../../database/models/sample'
 
-import { DatabaseError, NotFoundError } from '../../errors/errors'
-
 import { ErrorHelper } from '../helpers/error'
 
 const filename = __filename
