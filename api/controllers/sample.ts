@@ -21,4 +21,9 @@ export class SampleController {
     static async getSample(req: any, res: any) {
         res.json(await sampleLogic.getSample(req.query))
     }
+
+    @ahandler
+    static async getSamples(req: any, res: any) {
+        res.json(await sampleLogic.getSamples(req.query))
+    }
 }

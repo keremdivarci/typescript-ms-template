@@ -40,18 +40,16 @@ export async function deleteSample(params: any) {
 
 export async function getSample(params: any) {
     const value = validate(validators.getSample, params) as types.getSample
-    let result
 
-    // if query is {}, return all samples
-    if (Object.keys(value).length === 0) {
-        result = await SampleModel.find()
-    } else {
-        result = await SampleModel.findOne(value)
-    }
+    const result = await SampleModel.findOne(value)
 
-    if (!result) {
-        throw new NotFoundError('Sample not found!')
-    }
+    return result
+}
+
+export async function getSamples(params: any) {
+    const value = validate(validators.getSample, params) as types.getSample
+
+    const result = await SampleModel.find(value)
 
     return result
 }
