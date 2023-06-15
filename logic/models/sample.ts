@@ -34,7 +34,7 @@ export async function updateSample(params: any): Promise<{ result: boolean }> {
 export async function deleteSample(params: any): Promise<{ result: boolean }> {
     const value = validate(validators.deleteSample, params) as types.deleteSample
 
-    const result = await SampleModel.deleteOne({ name: value.name })
+    const result = await SampleModel.deleteOne(value)
     errorHelper.deleteError(result)
 
     return { result: result.deletedCount > 0 }
