@@ -5,8 +5,8 @@ import { SampleController } from '../controllers/sample'
 
 const router = Router()
 
-router.get('/', SampleController.getSample)
-router.get('/all', SampleController.getSamples)
+router.post('/query', SampleController.querySample)
+router.post('/query/all/', SampleController.querySamples)
 router.post('/', SampleController.createSample)
 router.put('/', SampleController.updateSample)
 router.delete('/', SampleController.deleteSample)

@@ -40,7 +40,7 @@ export async function deleteSample(params: any): Promise<{ result: boolean }> {
     return { result: result.deletedCount > 0 }
 }
 
-export async function getSample(params: any): Promise<{ result: Sample }> {
+export async function querySample(params: any): Promise<{ result: Sample }> {
     const value = validate(validators.getSample, params) as types.getSample
 
     const result = (await SampleModel.findOne(value)) as Sample
@@ -49,7 +49,7 @@ export async function getSample(params: any): Promise<{ result: Sample }> {
     return { result: result }
 }
 
-export async function getSamples(params: any): Promise<{ result: Sample[] }> {
+export async function querySamples(params: any): Promise<{ result: Sample[] }> {
     const value = validate(validators.getSample, params) as types.getSample
 
     const result = (await SampleModel.find(value)) as Sample[]
