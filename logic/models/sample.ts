@@ -5,13 +5,9 @@ import * as types from '../types/sample'
 import { SampleModel, Sample } from '../../database/models/sample'
 
 import { ErrorHelper } from '../helpers/error'
+import { getModelName } from '../helpers/filename'
 
-const filename = __filename
-    .split(/(\\|\/)/g)
-    .pop()
-    ?.replace('.ts', '') as string
-
-const errorHelper = new ErrorHelper(filename)
+const errorHelper = new ErrorHelper(getModelName(__filename))
 
 export async function createSample(params: any): Promise<{ result: Sample }> {
     const value = validate(validators.createSample, params) as types.createSample
