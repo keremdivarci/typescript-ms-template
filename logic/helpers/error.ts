@@ -21,8 +21,8 @@ export class ErrorHelper {
         this.modelName = modelName
     }
 
-    get notFound() {
-        return new NotFoundError(`${this.modelName} not found!`)
+    notFound(name: string) {
+        return new NotFoundError(`${name} not found!`)
     }
 
     createError(result: any) {
@@ -32,29 +32,29 @@ export class ErrorHelper {
     }
 
     @acknowledged()
-    updateError(result: any) {
+    updateError(result: any, name?: string) {
         if (result.matchedCount === 0) {
-            throw this.notFound
+            throw this.notFound(name || this.modelName)
         }
     }
 
-    getError(result: any) {
+    getError(result: any, name?: string) {
         if (!result) {
-            throw this.notFound
+            throw this.notFound(name || this.modelName)
         }
     }
 
     @acknowledged()
-    getAllError(result: any) {
+    getAllError(result: any, name?: string) {
         if (result.length === 0) {
-            throw this.notFound
+            throw this.notFound(name || this.modelName)
         }
     }
 
     @acknowledged()
-    deleteError(result: any) {
+    deleteError(result: any, name?: string) {
         if (result.deletedCount === 0) {
-            throw this.notFound
+            throw this.notFound(name || this.modelName)
         }
     }
 }
