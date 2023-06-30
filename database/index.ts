@@ -1,5 +1,5 @@
 import Mongoose, { connection } from 'mongoose'
-import config from '../config'
+import { variables as config } from '../config'
 
 try {
     Mongoose.connect(config.MONGO_CONNECTION)

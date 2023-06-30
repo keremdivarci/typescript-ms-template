@@ -11,11 +11,9 @@ type config = {
 
 const env = process.env as any
 
-const variables: config = {
+export const variables: config = {
     PORT: env.PORT,
     MONGO_CONNECTION: env.MONGO_CONNECTION,
     JWT_SECRET: env.JWT_SECRET,
     SESSION_SECRET: env.SESSION_SECRET
 }
-
-export default variables

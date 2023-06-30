@@ -4,7 +4,7 @@ import Morgan from 'morgan' // Terminal logging
 import { status500 } from '../api/middlewares/handle' // Error Models
 import Session from 'express-session' //Express session manager
 import MongoStore from 'connect-mongo' //Session manager for MongoDB, Express
-import config from '../config'
+import { variables as config } from '../config'
 // Initilaziation
 const app = Express()
 

@@ -1,5 +1,5 @@
 import JWT from 'jsonwebtoken'
-import config from '../../config'
+import { variables as config } from '../../config'
 
 import { ForbiddenError } from '../../errors/errors'
 
