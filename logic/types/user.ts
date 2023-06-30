@@ -4,9 +4,9 @@
  */
 
 export interface user {
-  accesses: string[];
   email: string;
   id: string;
   name: string;
+  permissions: any;
   surname: string;
 }

@@ -5,7 +5,7 @@ import { ForbiddenError } from '../../errors/errors'
 
 export function decode(token: string) {
     try {
-        const result = JWT.verify(token, config.JWT_SECRET)
+        const result = JWT.verify(token, config.MODULE_KEY)
         if (typeof result === 'string') {
             throw result
         }

@@ -5,8 +5,13 @@ dotenv.config()
 type config = {
     PORT: number
     MONGO_CONNECTION: string
-    JWT_SECRET: string
+
+    MODULE_NAME: string
+    MODULE_KEY: string
+
     SESSION_SECRET: string
+
+    SAMPLE_MS: string
 }
 
 const env = process.env as any
@@ -14,6 +19,8 @@ const env = process.env as any
 export const variables: config = {
     PORT: env.PORT,
     MONGO_CONNECTION: env.MONGO_CONNECTION,
-    JWT_SECRET: env.JWT_SECRET,
-    SESSION_SECRET: env.SESSION_SECRET
+    MODULE_KEY: env.MODULE_KEY,
+    MODULE_NAME: env.MODULE_NAME,
+    SESSION_SECRET: env.SESSION_SECRET,
+    SAMPLE_MS: env.SAMPLE_MS
 }
