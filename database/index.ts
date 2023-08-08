@@ -1,11 +1,13 @@
 import Mongoose, { connection } from 'mongoose'
 import { variables as config } from '../config'
 
-try {
-    Mongoose.connect(config.MONGO_CONNECTION)
-    console.log(`Connected to the => ${config.MONGO_CONNECTION}`)
-} catch {
-    console.log(`Could not connect to the => ${config.MONGO_CONNECTION}`)
-}
+Mongoose.connect(config.MONGO_CONNECTION)
+    .then(() => {
+        console.log(`Connected to the => ${config.MONGO_CONNECTION}`)
+    })
+    .catch((error) => {
+        console.log(`Error connecting to the => ${config.MONGO_CONNECTION}`)
+        console.log(error.message)
+    })
 
 export { connection }
