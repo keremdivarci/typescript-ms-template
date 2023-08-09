@@ -2,13 +2,18 @@ import * as error from '../../errors/errors'
 import { getUserFromToken } from '../../logic/models/user'
 import { ahandler } from '../../errors/handle'
 
+import { login } from '../../logic/validators/user'
+import { validate } from '../../logic/helpers/validator'
+
 export class Auth {
     @ahandler
     static async login(req: any, res: any) {
-        //Delete current session
-        if (req.session?.user) req.session.user = undefined
+        if (req.session?.user) {
+            throw new error.SessionError('User already logged in')
+        }
 
-        //Check for user
+        validate(req.body, login)
+
         let user = getUserFromToken(req.body.token)
 
         req.session.user = user
@@ -18,17 +23,13 @@ export class Auth {
 
     @ahandler
     static async logout(req: any, res: any, next: any) {
-        if (!req?.session?.user) return next(new error.SessionError(''))
-
-        req.session.user = undefined
+        if (!req?.session?.user) throw new error.SessionError('User not logged in')
         req.session.destroy()
-
         return res.json({ result: true })
     }
 
     @ahandler
     static async check(req: any, res: any) {
-        if (!req?.session?.user) return res.json({ result: false })
-        return res.json({ result: true })
+        return res.json({ result: !!req.session.user })
     }
 }
