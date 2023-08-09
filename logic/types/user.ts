@@ -3,6 +3,10 @@
  * Do not modify this file manually
  */
 
+export interface login {
+  token: string;
+}
+
 export interface user {
   email: string;
   id: string;
