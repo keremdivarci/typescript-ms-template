@@ -16,6 +16,6 @@ export function hasAccess(access: string[], user: types.user): boolean {
 export function requireAcces(requires: string[]) {
     return (req: any, res: any, next: any) => {
         if (!req?.session?.user) throw new ForbiddenError('User not logged in')
-        hasAccess(requires, req.session.user)
+        if (hasAccess(requires, req.session.user)) next()
     }
 }

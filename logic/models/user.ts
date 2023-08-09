@@ -13,20 +13,3 @@ export function getUserFromToken(token: string): user {
 
     return value
 }
-
-export function hasAccess(access: string[], user: user): { result: true } {
-    // const value = validate(data, validators.user) as types.user
-
-    let tempPermissons = user.permissions
-    access.forEach((item) => {
-        if (tempPermissons[item]) {
-            tempPermissons = tempPermissons[item]
-        } else {
-            throw new ForbiddenError(`You not have ${access.join('->')} access`)
-        }
-    })
-
-    return {
-        result: true
-    }
-}
