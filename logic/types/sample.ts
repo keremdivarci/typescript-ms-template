@@ -4,22 +4,45 @@
  */
 
 export interface createSample {
-  age?: number;
-  name: string;
+  body: {
+    age?: number;
+    name: string;
+  };
+  query?: object;
 }
 
 export interface deleteSample {
-  name: string;
+  query: {
+    name: string;
+  };
 }
 
 export interface getSample {
+  query: {
+    name: string;
+  };
+}
+
+export interface getSamples {
+  query: {
+    name?: string;
+  };
+}
+
+export interface query {
+  name: string;
+}
+
+export interface queryAll {
   name?: string;
 }
 
 export interface updateSample {
-  name: string;
-  sample?: {
+  body?: {
     age?: number;
     name?: string;
+  };
+  query?: {
+    name: string;
   };
 }
