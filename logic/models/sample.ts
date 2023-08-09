@@ -9,47 +9,47 @@ import { getModelName } from '../helpers/filename'
 
 const errorHelper = new ErrorHelper(getModelName(__filename))
 
-export async function createSample(params: any): Promise<{ result: Sample }> {
-    const value = validate(validators.createSample, params) as types.createSample
+export async function createSample(params: types.createSample): Promise<Sample> {
+    const value = validate(params, validators.createSample) as types.createSample
 
     const result = (await SampleModel.create(value)) as Sample
     errorHelper.createError(result)
 
-    return { result: result }
+    return result
 }
 
-export async function updateSample(params: any): Promise<{ result: boolean }> {
-    const value = validate(validators.updateSample, params) as types.updateSample
+export async function updateSample(params: types.updateSample): Promise<boolean> {
+    const value = validate(params, validators.updateSample) as types.updateSample
 
     const result = await SampleModel.updateOne({ name: value.name }, value.sample, { new: true })
     errorHelper.updateError(result)
 
-    return { result: result.modifiedCount > 0 }
+    return result.modifiedCount > 0
 }
 
-export async function deleteSample(params: any): Promise<{ result: boolean }> {
-    const value = validate(validators.deleteSample, params) as types.deleteSample
+export async function deleteSample(params: types.deleteSample): Promise<boolean> {
+    const value = validate(params, validators.deleteSample) as types.deleteSample
 
     const result = await SampleModel.deleteOne(value)
     errorHelper.deleteError(result)
 
-    return { result: result.deletedCount > 0 }
+    return result.deletedCount > 0
 }
 
-export async function querySample(params: any): Promise<{ result: Sample }> {
-    const value = validate(validators.getSample, params) as types.getSample
+export async function querySample(params: types.getSample): Promise<Sample> {
+    const value = validate(params, validators.getSample) as types.getSample
 
     const result = (await SampleModel.findOne(value)) as Sample
     errorHelper.getError(result)
 
-    return { result: result }
+    return result
 }
 
-export async function querySamples(params: any): Promise<{ result: Sample[] }> {
-    const value = validate(validators.getSample, params) as types.getSample
+export async function querySamples(params: types.getSamples): Promise<Sample[]> {
+    const value = validate(params, validators.getSamples) as types.getSamples
 
     const result = (await SampleModel.find(value)) as Sample[]
     errorHelper.getAllError(result)
 
-    return { result: result }
+    return result
 }

@@ -1,6 +1,7 @@
 import { BaseError } from '../../errors/errors'
-import { toJson } from '../../errors/json'
 import { AxiosError } from 'axios'
+
+import { formatter } from '../controllers/returnFormat'
 
 export function status500(err: BaseError | Error | AxiosError, req: any, res: any, next: any) {
     if (err instanceof AxiosError) {
@@ -11,15 +12,15 @@ export function status500(err: BaseError | Error | AxiosError, req: any, res: an
         return next()
     }
 
-    const json = toJson(err)
+    const json = formatter(err, 'Something went wrong', 'failed')
 
-    if (err instanceof BaseError) {
-        res.status(json.status)
-        delete json.status
-        res.json(json)
-        return next()
+    if (!json.error!.status) {
+        json.error!.status = 500
     }
 
-    res.status(500)
+    res.status(json.error!.status)
+    delete json.error!.status
     res.json(json)
+
+    next()
 }
