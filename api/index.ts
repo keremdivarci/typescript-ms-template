@@ -8,13 +8,21 @@ import { variables as config } from '../config'
 // Initilaziation
 const app = Express()
 
+import type { user } from '../logic/types/params/user'
+declare module 'express-session' {
+    interface SessionData {
+        user: user
+        cookie: Cookie
+    }
+}
+
 // Session Start
 app.use(
     Session({
         name: 'PROJECT_PHPSESSID',
         store: MongoStore.create({ mongoUrl: config.MONGO_CONNECTION }),
         secret: config.SESSION_SECRET,
-        saveUninitialized: false,
+        saveUninitialized: true,
         resave: false
     })
 )

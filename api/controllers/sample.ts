@@ -1,62 +1,66 @@
-import * as sampleLogic from '../../logic/models/sample'
+import { SampleLogic } from '../../logic/models/sample'
 import { ahandler } from '../../errors/handle'
 
 import { formatter } from './returnFormat'
 
+import { Request, Response } from 'express'
+
+import * as params from '../../logic/types/params/sample'
+
 export class SampleController {
     @ahandler
-    static async createSample(req: any, res: any) {
+    static async createSample(req: Request, res: Response) {
         res.json(
             formatter(
-                await sampleLogic.createSample({
+                await SampleLogic.createSample({
                     query: req.query,
                     body: req.body
-                })
+                } as params.createSample)
             )
         )
     }
 
     @ahandler
-    static async updateSample(req: any, res: any) {
+    static async updateSample(req: Request, res: Response) {
         res.json(
             formatter(
-                await sampleLogic.updateSample({
+                await SampleLogic.updateSample({
                     query: req.query,
                     body: req.body
-                })
+                } as params.updateSample)
             )
         )
     }
 
     @ahandler
-    static async deleteSample(req: any, res: any) {
+    static async deleteSample(req: Request, res: Response) {
         res.json(
             formatter(
-                await sampleLogic.deleteSample({
+                await SampleLogic.deleteSample({
                     query: req.query
-                })
+                } as params.deleteSample)
             )
         )
     }
 
     @ahandler
-    static async querySample(req: any, res: any) {
+    static async getSample(req: Request, res: Response) {
         res.json(
             formatter(
-                await sampleLogic.querySample({
+                await SampleLogic.getSample({
                     query: req.query
-                })
+                } as params.getSample)
             )
         )
     }
 
     @ahandler
-    static async querySamples(req: any, res: any) {
+    static async getSamples(req: Request, res: Response) {
         res.json(
             formatter(
-                await sampleLogic.querySamples({
+                await SampleLogic.getSamples({
                     query: req.query
-                })
+                } as params.getSamples)
             )
         )
     }
