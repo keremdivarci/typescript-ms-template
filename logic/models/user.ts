@@ -1,10 +1,8 @@
-import { validate } from '../helpers/validator'
+import { validate } from '../helpers/validate'
 import { decode } from '../helpers/JWT'
 
-import * as validators from '../validators/user'
-import type { user } from '../types/user'
-
-import { ForbiddenError } from '../../errors/errors'
+import * as validators from '../validators/params/user'
+import type { user } from '../types/params/user'
 
 export function getUserFromToken(token: string): user {
     const result = decode(token)

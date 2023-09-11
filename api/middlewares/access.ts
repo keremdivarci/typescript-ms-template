@@ -1,5 +1,5 @@
 import { ForbiddenError } from '../../errors/errors'
-import * as types from '../../logic/types/user'
+import * as types from '../../logic/types/params/user'
 
 export function hasAccess(access: string[], user: types.user): boolean {
     let tempPermissons = user.permissions
