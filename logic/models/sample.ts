@@ -1,55 +1,58 @@
-import * as validators from '../validators/sample'
-import { validate } from '../helpers/validator'
-import * as types from '../types/sample'
+import * as params from '../types/params/sample'
+import * as returns from '../types/returns/sample'
 
-import { SampleModel, Sample } from '../../database/models/sample'
+import { SampleModel } from '../../database/models/sample'
 
 import { ErrorHelper } from '../helpers/error'
 import { getModelName } from '../helpers/filename'
 
+import { avalidator } from '../helpers/validator'
+
+import { filter } from '../helpers/filter'
+
 const errorHelper = new ErrorHelper(getModelName(__filename))
 
-export async function createSample(params: types.createSample): Promise<Sample> {
-    const value = validate(params, validators.createSample) as types.createSample
+export class SampleLogic {
+    @avalidator
+    static async createSample(params: params.createSample): Promise<returns.createSample> {
+        var result = await SampleModel.create(params.body)
+        errorHelper.createError(result)
 
-    const result = (await SampleModel.create(value.body)) as Sample
-    errorHelper.createError(result)
+        result = result.toObject()
+        return filter(result, ['_id'])
+    }
 
-    return result
-}
+    @avalidator
+    static async updateSample(params: params.updateSample): Promise<returns.updateSample> {
+        var result = await SampleModel.updateOne(params.query, { $set: params.body })
+        errorHelper.updateError(result)
 
-export async function updateSample(params: types.updateSample): Promise<boolean> {
-    const value = validate(params, validators.updateSample) as types.updateSample
+        return result.modifiedCount > 0
+    }
 
-    const result = await SampleModel.updateOne(value.query, { $set: value.body })
-    errorHelper.updateError(result)
+    @avalidator
+    static async deleteSample(params: params.deleteSample): Promise<returns.deleteSample> {
+        var result = await SampleModel.deleteOne(params.query)
+        errorHelper.deleteError(result)
 
-    return result.modifiedCount > 0
-}
+        return result.deletedCount > 0
+    }
 
-export async function deleteSample(params: types.deleteSample): Promise<boolean> {
-    const value = validate(params, validators.deleteSample) as types.deleteSample
+    @avalidator
+    static async getSample(params: params.getSample): Promise<returns.getSample> {
+        var result = await SampleModel.findOne(params.query, { _id: 0 })
+        errorHelper.getError(result)
 
-    const result = await SampleModel.deleteOne(value.query)
-    errorHelper.deleteError(result)
+        return result!.toObject()
+    }
 
-    return result.deletedCount > 0
-}
+    @avalidator
+    static async getSamples(params: params.getSamples): Promise<returns.getSamples> {
+        var result = await SampleModel.find(params.query, { _id: 0 })
+        errorHelper.getAllError(result)
 
-export async function querySample(params: types.getSample): Promise<Sample> {
-    const value = validate(params, validators.getSample) as types.getSample
-
-    const result = (await SampleModel.findOne(value.query)) as Sample
-    errorHelper.getError(result)
-
-    return result
-}
-
-export async function querySamples(params: types.getSamples): Promise<Sample[]> {
-    const value = validate(params, validators.getSamples) as types.getSamples
-
-    const result = (await SampleModel.find(value.query)) as Sample[]
-    errorHelper.getAllError(result)
-
-    return result
+        return result.map((item) => {
+            return item.toObject()
+        })
+    }
 }
