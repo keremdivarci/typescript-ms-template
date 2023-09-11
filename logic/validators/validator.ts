@@ -1,9 +1,9 @@
 import { variables as config } from '../../config'
 
-import * as paramSchemas from '../validators/params'
-import * as resultSchemas from '../validators/returns'
+import * as paramSchemas from './params'
+import * as resultSchemas from './returns'
 
-import { validate } from './validate'
+import { validate } from 'backend-helper-kit'
 
 // let decorate
 export function avalidator(target: any, name: string, descriptor: any) {

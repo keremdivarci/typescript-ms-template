@@ -3,14 +3,13 @@ import * as returns from '../types/returns/sample'
 
 import { SampleModel } from '../../database/models/sample'
 
-import { ErrorHelper } from '../helpers/error'
-import { getModelName } from '../helpers/filename'
+import { ErrorHelper } from 'backend-helper-kit'
 
-import { avalidator } from '../helpers/validator'
+import { avalidator } from '../validators/validator'
 
-import { filter } from '../helpers/filter'
+import { filter } from 'backend-helper-kit'
 
-const errorHelper = new ErrorHelper(getModelName(__filename))
+const errorHelper = new ErrorHelper(__filename)
 
 export class SampleLogic {
     @avalidator

@@ -1,17 +1,18 @@
-import * as error from '../../errors/errors'
 import { getUserFromToken } from '../../logic/models/user'
-import { ahandler } from '../../errors/handle'
+import { ahandler } from 'backend-helper-kit'
 
 import { login } from '../../logic/validators/params/user'
-import { validate } from '../../logic/helpers/validate'
+import { validate } from 'backend-helper-kit'
 
 import { Response, Request } from 'express'
+
+import { SessionError } from 'backend-helper-kit'
 
 export class Auth {
     @ahandler
     static async login(req: Request, res: Response) {
         if (req.session.user) {
-            throw new error.SessionError('User already logged in')
+            throw new SessionError('User already logged in')
         }
 
         let user = getUserFromToken(req.body.token)
@@ -25,7 +26,7 @@ export class Auth {
 
     @ahandler
     static async logout(req: Request, res: Response) {
-        if (!req.session.user) throw new error.SessionError('User not logged in')
+        if (!req.session.user) throw new SessionError('User not logged in')
 
         req.session.user = undefined
 

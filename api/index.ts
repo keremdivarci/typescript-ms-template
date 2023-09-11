@@ -1,7 +1,7 @@
 // Require dependencies
 import Express from 'express' // Http server
 import Morgan from 'morgan' // Terminal logging
-import { status500 } from '../api/middlewares/handle' // Error Models
+import { status500 } from 'backend-helper-kit' // Error Models
 import Session from 'express-session' //Express session manager
 import MongoStore from 'connect-mongo' //Session manager for MongoDB, Express
 import { variables as config } from '../config'
