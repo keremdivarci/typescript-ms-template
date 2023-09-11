@@ -25,9 +25,9 @@ export class ErrorHelper {
         return new NotFoundError(`${name} not found!`)
     }
 
-    createError(result: any) {
+    createError(result: any, name?: string) {
         if (!result) {
-            throw new CreateError(`Error creating ${this.modelName}`)
+            throw new CreateError(`Error creating ${name || this.modelName}`)
         }
     }
 
