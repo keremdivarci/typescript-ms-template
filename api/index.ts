@@ -56,6 +56,6 @@ app.use('/sample', sampleRouter)
 app.use(status500)
 
 // Listen for requests
-app.listen(config.PORT, () => console.log(`API => Listening on port ${config.PORT}`))
+app.listen(config.PORT, () => console.log(`Server running! ✅`))
 
 export { app }
