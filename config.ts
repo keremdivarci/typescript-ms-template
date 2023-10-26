@@ -1,4 +1,4 @@
-import { validate } from './logic/helpers/validate'
+import { validate } from 'backend-helper-kit'
 import Joi from 'joi'
 
 import * as dotenv from 'dotenv'
