@@ -6,8 +6,8 @@ import { requireAcces } from '../middlewares/access'
 
 const router = Router()
 
-router.get('/query', requireAcces(['sample', 'read']), SampleController.querySample)
-router.get('/query/all/', requireAcces(['sample', 'read', 'all']), SampleController.querySamples)
+router.get('/query', requireAcces(['sample', 'read']), SampleController.getSample)
+router.get('/query/all/', requireAcces(['sample', 'read', 'all']), SampleController.getSamples)
 router.post('/', requireAcces(['sample', 'create']), SampleController.createSample)
 router.put('/', requireAcces(['sample', 'update']), SampleController.updateSample)
 router.delete('/', requireAcces(['sample', 'delete']), SampleController.deleteSample)
