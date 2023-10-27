@@ -5,7 +5,7 @@
 
 export interface createSample {
   body: {
-    age?: number;
+    age: number;
     name: string;
   };
   query?: object;

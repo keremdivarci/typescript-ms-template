@@ -12,7 +12,7 @@ export const createSample = Joi.object({
     query: Joi.object({}),
     body: Joi.object({
         name: Joi.string().required(),
-        age: Joi.number()
+        age: Joi.number().required()
     }).required()
 })
 
