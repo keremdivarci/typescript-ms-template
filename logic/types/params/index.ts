@@ -52,9 +52,5 @@ export interface updateSample {
 }
 
 export interface user {
-  email: string;
-  id: string;
-  name: string;
-  permissions: any;
-  surname: string;
+  permissions?: any;
 }
