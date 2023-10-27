@@ -1,13 +1,10 @@
-import * as params from '../types/params/sample'
-import * as returns from '../types/returns/sample'
+import * as params from '../../types/params/sample'
+import * as returns from '../../types/returns/sample'
 
-import { SampleModel } from '../../database/models/sample'
+import { ErrorHelper, filter } from 'backend-helper-kit'
 
-import { ErrorHelper } from 'backend-helper-kit'
-
-import { avalidator } from '../validators/validator'
-
-import { filter } from 'backend-helper-kit'
+import { SampleModel } from '../../../database/models/sample'
+import { avalidator } from '../../validators/validator'
 
 const errorHelper = new ErrorHelper(__filename)
 
