@@ -2,9 +2,9 @@ import { Express } from 'express'
 import Session from 'express-session'
 import MongoStore from 'connect-mongo'
 
-import { variables as config } from '../config'
+import { variables as config } from '../../config'
 
-import type { user } from '../logic/types/params/user'
+import type { user } from '../../logic/types/params/user'
 
 declare module 'express-session' {
     interface SessionData {

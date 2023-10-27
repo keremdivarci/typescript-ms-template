@@ -3,8 +3,8 @@ import morgan from 'morgan'
 import { addRoutes } from './routes'
 import { status500 } from 'backend-helper-kit'
 import { variables as config } from '../config'
-import { createSession } from './session'
 import { config as headerConfig } from './middlewares/header-config'
+import { createSession } from './middlewares/session'
 
 export const app = express()
 
