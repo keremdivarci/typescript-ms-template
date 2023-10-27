@@ -38,3 +38,5 @@ export var variables = validate(
     },
     configSchema
 ) as configType
+
+console.log(variables)

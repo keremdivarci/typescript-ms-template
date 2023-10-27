@@ -1,19 +1,15 @@
 import { variables as config } from './config'
-console.log(config)
-
 import { convert } from 'backend-helper-kit'
 
+import data from './type.json'
+
+data as {
+    schemaDirectory: string
+    typeOutputDirectory: string
+}[]
+
 if (config.ENV === 'development') {
-    convert([
-        {
-            schemaDirectory: './logic/validators/params',
-            typeOutputDirectory: './logic/types/params'
-        },
-        {
-            schemaDirectory: './logic/validators/returns',
-            typeOutputDirectory: './logic/types/returns'
-        }
-    ])
+    convert(data)
 }
 
 import { connection } from './database'

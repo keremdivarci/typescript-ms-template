@@ -22,5 +22,6 @@
     "noImplicitThis": true,
     "useUnknownInCatchVariables": true,
     "noUnusedLocals": true,
+    "resolveJsonModule": true
   }
 }
