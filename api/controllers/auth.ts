@@ -1,4 +1,4 @@
-import { getUserFromToken } from '../../logic/models/user'
+import { getUserFromToken } from '../../logic/models/user/'
 import { ahandler } from 'backend-helper-kit'
 
 import { login } from '../../logic/validators/params/user'
@@ -15,6 +15,7 @@ export class Auth {
             throw new SessionError('User already logged in')
         }
 
+        // JWT Login
         let user = getUserFromToken(req.body.token)
 
         validate(req.body, login)
@@ -29,8 +30,7 @@ export class Auth {
         if (!req.session.user) throw new SessionError('User not logged in')
 
         req.session.user = undefined
-
-        return res.json({ result: true })
+        return res.json({ result: !!req.session.user })
     }
 
     @ahandler
