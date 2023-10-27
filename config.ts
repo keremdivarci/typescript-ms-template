@@ -1,12 +1,12 @@
 import { validate } from 'backend-helper-kit'
 import Joi from 'joi'
 
-import * as dotenv from 'dotenv'
+import { config } from 'dotenv'
 
-dotenv.config()
-const env: config = process.env as any
+config()
+const env: configType = process.env as any
 
-type config = {
+type configType = {
     PORT: number
     MONGO_CONNECTION: string
     MODULE_NAME: string
@@ -37,4 +37,4 @@ export var variables = validate(
         ENV: env.ENV
     },
     configSchema
-)
+) as configType
