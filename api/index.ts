@@ -1,61 +1,18 @@
-// Require dependencies
-import Express from 'express' // Http server
-import Morgan from 'morgan' // Terminal logging
-import { status500 } from 'backend-helper-kit' // Error Models
-import Session from 'express-session' //Express session manager
-import MongoStore from 'connect-mongo' //Session manager for MongoDB, Express
+import express, { json } from 'express'
+import morgan from 'morgan'
+import { addRoutes } from './routes'
+import { status500 } from 'backend-helper-kit'
 import { variables as config } from '../config'
-// Initilaziation
-const app = Express()
+import { config as headerConfig } from './header-config'
+import { createSession } from './session'
 
-import type { user } from '../logic/types/params/user'
-declare module 'express-session' {
-    interface SessionData {
-        user: user
-        cookie: Cookie
-    }
-}
+export const app = express()
 
-// Session Start
-app.use(
-    Session({
-        name: 'PROJECT_PHPSESSID',
-        store: MongoStore.create({ mongoUrl: config.MONGO_CONNECTION }),
-        secret: config.SESSION_SECRET,
-        saveUninitialized: true,
-        resave: false
-    })
-)
+createSession(app) // create session
+app.use(morgan('dev')) // logging
+app.use(json({ limit: '10mb' })) // parse json
+app.use(headerConfig) // set headers
+addRoutes(app) // add routes
+app.use(status500) // handle errors
 
-// Middlewares
-app.use(Morgan('dev'))
-app.use(Express.json({ limit: '10mb' }))
-
-app.use((req, res, next) => {
-    // allow all origins
-    if (req.headers.origin) {
-        res.header('Access-Control-Allow-Origin', req.headers.origin)
-    } else {
-        res.header('Access-Control-Allow-Origin', '*')
-    }
-    res.header('Access-Control-Allow-Credentials', 'true')
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, X-PINGOTHER')
-    res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, PATCH, HEAD, OPTIONS')
-    res.header('Access-Control-Expose-Headers', 'Set-Cookie')
-    next()
-})
-
-// routes
-import { router as authRouter } from './routes/auth'
-import { router as sampleRouter } from './routes/sample'
-
-app.use('/auth', authRouter)
-app.use('/sample', sampleRouter)
-
-// Error Handling
-app.use(status500)
-
-// Listen for requests
 app.listen(config.PORT, () => console.log(`Server running! ✅`))
-
-export { app }

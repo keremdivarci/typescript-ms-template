@@ -4,12 +4,12 @@ import { SampleController } from '../controllers/sample'
 
 import { requireAcces } from '../middlewares/access'
 
-const router = Router()
+const sampleRouter = Router()
 
-router.get('/query', requireAcces(['sample', 'read']), SampleController.getSample)
-router.get('/query/all/', requireAcces(['sample', 'read', 'all']), SampleController.getSamples)
-router.post('/', requireAcces(['sample', 'create']), SampleController.createSample)
-router.put('/', requireAcces(['sample', 'update']), SampleController.updateSample)
-router.delete('/', requireAcces(['sample', 'delete']), SampleController.deleteSample)
+sampleRouter.get('/query', requireAcces(['sample', 'read']), SampleController.getSample)
+sampleRouter.get('/query/all/', requireAcces(['sample', 'read', 'all']), SampleController.getSamples)
+sampleRouter.post('/', requireAcces(['sample', 'create']), SampleController.createSample)
+sampleRouter.put('/', requireAcces(['sample', 'update']), SampleController.updateSample)
+sampleRouter.delete('/', requireAcces(['sample', 'delete']), SampleController.deleteSample)
 
-export { router }
+export { sampleRouter }
