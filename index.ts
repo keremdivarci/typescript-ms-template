@@ -4,7 +4,16 @@ console.log(config)
 import { convert } from 'backend-helper-kit'
 
 if (config.ENV === 'development') {
-    convert()
+    convert([
+        {
+            schemaDirectory: './logic/validators/params',
+            typeOutputDirectory: './logic/types/params'
+        },
+        {
+            schemaDirectory: './logic/validators/returns',
+            typeOutputDirectory: './logic/types/returns'
+        }
+    ])
 }
 
 import { connection } from './database'
