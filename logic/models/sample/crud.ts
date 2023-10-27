@@ -1,7 +1,7 @@
 import * as params from '../../types/params/sample'
 import * as returns from '../../types/returns/sample'
 
-import { ErrorHelper, filter } from 'backend-helper-kit'
+import { ErrorHelper, deleteId } from 'backend-helper-kit'
 
 import { SampleModel } from '../../../database/models/sample'
 import { avalidator } from '../../validators/validator'
@@ -10,12 +10,13 @@ const errorHelper = new ErrorHelper(__filename)
 
 export class SampleLogic {
     @avalidator
+    @deleteId
     static async createSample(params: params.createSample): Promise<returns.createSample> {
         var result = await SampleModel.create(params.body)
         errorHelper.createError(result)
 
         result = result.toObject()
-        return filter(result, ['_id'])
+        return result
     }
 
     @avalidator
@@ -35,16 +36,18 @@ export class SampleLogic {
     }
 
     @avalidator
+    @deleteId
     static async getSample(params: params.getSample): Promise<returns.getSample> {
-        var result = await SampleModel.findOne(params.query, { _id: 0 })
+        var result = await SampleModel.findOne(params.query)
         errorHelper.getError(result)
 
         return result!.toObject()
     }
 
     @avalidator
+    @deleteId
     static async getSamples(params: params.getSamples): Promise<returns.getSamples> {
-        var result = await SampleModel.find(params.query, { _id: 0 })
+        var result = await SampleModel.find(params.query)
         errorHelper.getAllError(result)
 
         return result.map((item) => {
