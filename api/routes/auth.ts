@@ -1,8 +1,6 @@
 import { Router } from 'express'
-
-//Require controllers
 import { Auth } from '../controllers/auth'
-//Initilaziation
+
 const authRouter = Router()
 
 //Routes
