@@ -1,27 +1,19 @@
+import { login } from '../../logic/validators/user/user'
 import { getUserFromToken } from '../../logic/models/user/'
-import { ahandler } from 'backend-helper-kit'
 
-import { login } from '../../logic/validators/params/user'
-import { validate } from 'backend-helper-kit'
+import { ahandler, validate, SessionError } from 'backend-helper-kit'
 
 import { Response, Request } from 'express'
-
-import { SessionError } from 'backend-helper-kit'
 
 export class Auth {
     @ahandler
     static async login(req: Request, res: Response) {
-        if (req.session.user) {
-            throw new SessionError('User already logged in')
-        }
+        if (req.session.user) throw new SessionError('User already logged in')
 
-        // JWT Login
-        let user = getUserFromToken(req.body.token)
+        let user = getUserFromToken(req.body.token) // JWT Login
 
         validate(req.body, login)
-
         req.session.user = user
-
         return res.json({ result: true })
     }
 
