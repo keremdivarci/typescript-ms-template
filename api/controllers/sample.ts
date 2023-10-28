@@ -1,65 +1,34 @@
 import { SampleLogic } from '../../logic/models/sample'
-import { ahandler, formatter } from 'backend-helper-kit'
 
-import { Request, Response } from 'express'
+import { ahandler, formatter as wrapper } from 'backend-helper-kit'
 
-import * as params from '../../logic/types/params/sample'
+import { Request, Response, NextFunction } from 'express'
+
+const formatter = wrapper(SampleLogic)
+
+type status = {
+    continue: boolean
+    next: boolean
+}
 
 export class SampleController {
     @ahandler
-    static async createSample(req: Request, res: Response) {
-        res.json(
-            formatter(
-                await SampleLogic.createSample({
-                    query: req.query,
-                    body: req.body
-                } as params.createSample)
-            )
-        )
-    }
+    @formatter
+    static async createSample(req: Request, res: Response, next: NextFunction): Promise<status | void> {}
 
     @ahandler
-    static async updateSample(req: Request, res: Response) {
-        res.json(
-            formatter(
-                await SampleLogic.updateSample({
-                    query: req.query,
-                    body: req.body
-                } as params.updateSample)
-            )
-        )
-    }
+    @formatter
+    static async updateSample(req: Request, res: Response, next: NextFunction): Promise<status | void> {}
 
     @ahandler
-    static async deleteSample(req: Request, res: Response) {
-        res.json(
-            formatter(
-                await SampleLogic.deleteSample({
-                    query: req.query
-                } as params.deleteSample)
-            )
-        )
-    }
+    @formatter
+    static async deleteSample(req: Request, res: Response, next: NextFunction): Promise<status | void> {}
 
     @ahandler
-    static async getSample(req: Request, res: Response) {
-        res.json(
-            formatter(
-                await SampleLogic.getSample({
-                    query: req.query
-                } as params.getSample)
-            )
-        )
-    }
+    @formatter
+    static async getSample(req: Request, res: Response, next: NextFunction): Promise<status | void> {}
 
     @ahandler
-    static async getSamples(req: Request, res: Response) {
-        res.json(
-            formatter(
-                await SampleLogic.getSamples({
-                    query: req.query
-                } as params.getSamples)
-            )
-        )
-    }
+    @formatter
+    static async getSamples(req: Request, res: Response, next: NextFunction): Promise<status | void> {}
 }
