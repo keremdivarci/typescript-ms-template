@@ -1,7 +1,7 @@
 import { validate, decode } from 'backend-helper-kit'
 
-import * as validators from '../../validators/params/user'
-import type { user } from '../../types/params/user'
+import * as validators from '../../validators/user/user'
+import type { user } from '../../types/user'
 
 import { variables as config } from '../../../config'
 

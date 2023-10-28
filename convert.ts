@@ -2,12 +2,12 @@ import { convert } from 'backend-helper-kit'
 
 const data = [
     {
-        schemaDirectory: './logic/validators/params',
-        typeOutputDirectory: './logic/types/params'
+        schemaDirectory: './logic/validators/sample',
+        typeOutputDirectory: './logic/types/sample'
     },
     {
-        schemaDirectory: './logic/validators/returns',
-        typeOutputDirectory: './logic/types/returns'
+        schemaDirectory: './logic/validators/user',
+        typeOutputDirectory: './logic/types/user'
     }
 ]
 

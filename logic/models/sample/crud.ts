@@ -1,17 +1,21 @@
-import * as params from '../../types/params/sample'
-import * as returns from '../../types/returns/sample'
+import * as inputTypes from '../../types/sample/input-type'
+import * as outputTypes from '../../types/sample/output-type'
 
-import { ErrorHelper, deleteId } from 'backend-helper-kit'
+import * as inputValidators from '../../validators/sample/input-type'
+import * as outputValidators from '../../validators/sample/output-type'
+
+import { ErrorHelper, deleteId, avalidator as wrapper } from 'backend-helper-kit'
 
 import { SampleModel } from '../../../database/models/sample'
-import { avalidator } from '../../validators/validator'
+import { variables as config } from '../../../config'
 
+const avalidator = wrapper(inputValidators, outputValidators, config)
 const errorHelper = new ErrorHelper(__filename)
 
 export class SampleLogic {
     @avalidator
     @deleteId
-    static async createSample(params: params.createSample): Promise<returns.createSample> {
+    static async createSample(params: inputTypes.createSample): Promise<outputTypes.createSample> {
         var result = await SampleModel.create(params.body)
         errorHelper.createError(result)
 
@@ -20,7 +24,7 @@ export class SampleLogic {
     }
 
     @avalidator
-    static async updateSample(params: params.updateSample): Promise<returns.updateSample> {
+    static async updateSample(params: inputTypes.updateSample): Promise<outputTypes.updateSample> {
         var result = await SampleModel.updateOne(params.query, { $set: params.body })
         errorHelper.updateError(result)
 
@@ -28,7 +32,7 @@ export class SampleLogic {
     }
 
     @avalidator
-    static async deleteSample(params: params.deleteSample): Promise<returns.deleteSample> {
+    static async deleteSample(params: inputTypes.deleteSample): Promise<outputTypes.deleteSample> {
         var result = await SampleModel.deleteOne(params.query)
         errorHelper.deleteError(result)
 
@@ -37,7 +41,7 @@ export class SampleLogic {
 
     @avalidator
     @deleteId
-    static async getSample(params: params.getSample): Promise<returns.getSample> {
+    static async getSample(params: inputTypes.getSample): Promise<outputTypes.getSample> {
         var result = await SampleModel.findOne(params.query)
         errorHelper.getError(result)
 
@@ -46,7 +50,7 @@ export class SampleLogic {
 
     @avalidator
     @deleteId
-    static async getSamples(params: params.getSamples): Promise<returns.getSamples> {
+    static async getSamples(params: inputTypes.getSamples): Promise<outputTypes.getSamples> {
         var result = await SampleModel.find(params.query)
         errorHelper.getAllError(result)
 

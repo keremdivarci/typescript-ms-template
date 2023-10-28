@@ -1,4 +1,4 @@
-import * as types from '../../types/params/user'
+import * as types from '../../types/user/user'
 
 export function checkAccess(requires?: any, user?: types.user): boolean {
     if (!requires) {
