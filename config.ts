@@ -12,7 +12,6 @@ type configType = {
     MODULE_NAME: string
     MODULE_KEY: string
     SESSION_SECRET: string
-    SAMPLE_MS: string
     ENV: string
 }
 
@@ -22,7 +21,6 @@ const configSchema = Joi.object({
     MODULE_NAME: Joi.string().required(),
     MODULE_KEY: Joi.string().required(),
     SESSION_SECRET: Joi.string().required(),
-    SAMPLE_MS: Joi.string().uri().required(),
     ENV: Joi.string().valid('development', 'production').required()
 })
 
@@ -33,7 +31,6 @@ export var variables = validate(
         MODULE_KEY: env.MODULE_KEY,
         MODULE_NAME: env.MODULE_NAME,
         SESSION_SECRET: env.SESSION_SECRET,
-        SAMPLE_MS: env.SAMPLE_MS,
         ENV: env.ENV
     },
     configSchema
