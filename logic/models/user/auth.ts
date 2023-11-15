@@ -8,7 +8,7 @@ import * as outputValidators from '../../validators/user/output-type'
 import { ErrorHelper, avalidator as wrapper, validate, decode, deleteId, ForbiddenError } from 'backend-helper-kit'
 
 import { UserModel } from '../../../database/models/user'
-import { variables as config } from '../../../config'
+import { config } from '../../../config'
 
 import bcrypt from 'bcrypt'
 

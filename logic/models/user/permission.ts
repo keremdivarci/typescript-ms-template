@@ -7,7 +7,7 @@ import * as outputValidators from '../../validators/user/output-type'
 
 import { avalidator as wrapper } from 'backend-helper-kit'
 
-import { variables as config } from '../../../config'
+import { config } from '../../../config'
 
 const avalidator = wrapper(inputValidators, outputValidators, config)
 

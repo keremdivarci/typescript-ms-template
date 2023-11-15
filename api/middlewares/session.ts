@@ -2,7 +2,7 @@ import { Express } from 'express'
 import Session from 'express-session'
 import MongoStore from 'connect-mongo'
 
-import { variables as config } from '../../config'
+import { config } from '../../config'
 
 import type { user } from '../../logic/types/user/'
 
