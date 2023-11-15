@@ -12,7 +12,8 @@ export interface base {
     name?: string;
   };
   user?: {
-    permissions?: any;
+    permissions: any;
+    username: string;
   };
 }
 

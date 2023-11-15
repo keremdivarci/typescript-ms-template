@@ -3,4 +3,6 @@
  * Do not modify this file manually
  */
 
-export * from './user';
+export * from './common';
+export * from './input-type';
+export * from './output-type';

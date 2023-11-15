@@ -12,7 +12,8 @@ export interface createSample {
     name?: string;
   };
   user?: {
-    permissions?: any;
+    permissions: any;
+    username: string;
   };
 }
 
@@ -25,7 +26,8 @@ export interface deleteSample {
     name?: string;
   };
   user?: {
-    permissions?: any;
+    permissions: any;
+    username: string;
   };
 }
 
@@ -38,7 +40,8 @@ export interface getSample {
     name?: string;
   };
   user?: {
-    permissions?: any;
+    permissions: any;
+    username: string;
   };
 }
 
@@ -51,7 +54,8 @@ export interface getSamples {
     name?: string;
   };
   user?: {
-    permissions?: any;
+    permissions: any;
+    username: string;
   };
 }
 
@@ -64,6 +68,7 @@ export interface updateSample {
     name?: string;
   };
   user?: {
-    permissions?: any;
+    permissions: any;
+    username: string;
   };
 }

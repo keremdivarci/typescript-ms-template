@@ -1,5 +1,5 @@
 import Joi from 'joi'
-import { user } from '../user/user'
+import { user } from '../user/common'
 
 export const query = Joi.object({
     name: Joi.string()
