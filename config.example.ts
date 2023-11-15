@@ -1,11 +1,6 @@
 import { validate } from 'backend-helper-kit'
 import Joi from 'joi'
 
-import { config } from 'dotenv'
-
-config()
-const env: configType = process.env as any
-
 type configType = {
     PORT: number
     MONGO_CONNECTION: string
@@ -24,16 +19,16 @@ const configSchema = Joi.object({
     ENV: Joi.string().valid('development', 'production').required()
 })
 
-export var variables = validate(
+export var config: configType = validate(
     {
-        PORT: env.PORT,
-        MONGO_CONNECTION: env.MONGO_CONNECTION,
-        MODULE_KEY: env.MODULE_KEY,
-        MODULE_NAME: env.MODULE_NAME,
-        SESSION_SECRET: env.SESSION_SECRET,
-        ENV: env.ENV
+        PORT: 8000,
+        MONGO_CONNECTION: 'mongodb://127.0.0.1:27017/template-ms',
+        MODULE_KEY: '123',
+        MODULE_NAME: 'template-ms',
+        SESSION_SECRET: '123',
+        ENV: 'development'
     },
     configSchema
-) as configType
+)
 
-console.log(variables)
+console.log(config)
