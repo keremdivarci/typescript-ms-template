@@ -3,9 +3,9 @@
  * Do not modify this file manually
  */
 
-export type addPermissions = boolean;
+export type addPermission = boolean;
 
-export type getPermissions = any;
+export type getPermission = any;
 
 export type login = boolean;
 
@@ -13,4 +13,4 @@ export type logout = boolean;
 
 export type register = boolean;
 
-export type removePermissions = boolean;
+export type removePermission = boolean;

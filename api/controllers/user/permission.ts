@@ -9,19 +9,13 @@ const formatter = wrapper(PermissionLogic)
 export class PermissionController {
     @ahandler
     @formatter
-    static async deletePermission(req: Request, res: Response, next: NextFunction): Promise<void> {
-        throw new Error('Not implemented!')
-    }
+    static async deletePermission(req: Request, res: Response, next: NextFunction): Promise<void> {}
 
     @ahandler
     @formatter
-    static async getPermissions(req: Request, res: Response, next: NextFunction): Promise<void> {
-        throw new Error('Not implemented!')
-    }
+    static async getPermission(req: Request, res: Response, next: NextFunction): Promise<void> {}
 
     @ahandler
     @formatter
-    static async addPermission(req: Request, res: Response, next: NextFunction): Promise<void> {
-        throw new Error('Not implemented!')
-    }
+    static async addPermission(req: Request, res: Response, next: NextFunction): Promise<void> {}
 }

@@ -13,13 +13,13 @@ const avalidator = wrapper(inputValidators, outputValidators, config)
 
 export class PermissionLogic {
     @avalidator
-    static async addPermission(params: inputTypes.addPermissions): Promise<outputTypes.addPermissions | void> {}
+    static async addPermission(params: inputTypes.addPermission): Promise<outputTypes.addPermission | void> {}
 
     @avalidator
-    static async removePermission(params: inputTypes.removePermissions): Promise<outputTypes.removePermissions | void> {}
+    static async removePermission(params: inputTypes.removePermission): Promise<outputTypes.removePermission | void> {}
 
     @avalidator
-    static async getPermissions(params: inputTypes.getPermissions): Promise<outputTypes.getPermissions> {}
+    static async getPermission(params: inputTypes.getPermission): Promise<outputTypes.getPermission> {}
 
     static checkPermission(requires?: any, user?: commonTypes.user): boolean {
         if (!requires) {

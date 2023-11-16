@@ -1,7 +1,6 @@
 import Joi from 'joi'
 import { authUser, user, base, query, jwtToken } from '../user/common'
 
-// delete permissions from authUser
 export const register = base.keys({
     body: authUser.required(),
     query: query.forbidden(),
@@ -20,12 +19,12 @@ export const logout = base.keys({
     body: authUser.forbidden()
 })
 
-export const getPermissions = base.keys({
+export const getPermission = base.keys({
     query: query.required(),
     user: user.required()
 })
 
-export const addPermissions = base.keys({
+export const addPermission = base.keys({
     body: Joi.object({
         permissionPath: Joi.array().items(Joi.string()).required(),
         permission: Joi.any().required()
@@ -33,7 +32,7 @@ export const addPermissions = base.keys({
     user: user.required()
 })
 
-export const removePermissions = base.keys({
+export const removePermission = base.keys({
     body: Joi.object({
         permissionPath: Joi.array().items(Joi.string()).required(),
         permission: Joi.any().required()

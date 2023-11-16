@@ -5,5 +5,5 @@ export const permissionRouter = Router()
 
 //Routes
 permissionRouter.delete('/', PermissionController.deletePermission)
-permissionRouter.get('/', PermissionController.getPermissions)
+permissionRouter.get('/', PermissionController.getPermission)
 permissionRouter.post('/', PermissionController.addPermission)

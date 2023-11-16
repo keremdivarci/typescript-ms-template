@@ -3,7 +3,7 @@
  * Do not modify this file manually
  */
 
-export interface addPermissions {
+export interface addPermission {
   body?: {
     permission: any;
     permissionPath: string[];
@@ -17,7 +17,7 @@ export interface addPermissions {
   };
 }
 
-export interface getPermissions {
+export interface getPermission {
   body?: {
     password: string;
     username: string;
@@ -58,7 +58,7 @@ export interface register {
   user?: undefined;
 }
 
-export interface removePermissions {
+export interface removePermission {
   body?: {
     permission: any;
     permissionPath: string[];
