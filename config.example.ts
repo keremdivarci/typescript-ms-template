@@ -19,7 +19,7 @@ const configSchema = Joi.object({
     ENV: Joi.string().valid('development', 'production').required()
 })
 
-export var config: configType = validate(
+export const config: configType = validate(
     {
         PORT: 8000,
         MONGO_CONNECTION: 'mongodb://127.0.0.1:27017/template-ms',

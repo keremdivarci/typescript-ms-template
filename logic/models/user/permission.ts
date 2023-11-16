@@ -9,6 +9,8 @@ import { avalidator as wrapper } from 'backend-helper-kit'
 
 import { config } from '../../../config'
 
+// import { UserModel } from '../../../database/models/user'
+
 const avalidator = wrapper(inputValidators, outputValidators, config)
 
 export class PermissionLogic {

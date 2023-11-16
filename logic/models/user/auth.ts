@@ -43,7 +43,7 @@ export class AuthLogic {
     @avalidator
     static async register(params: inputTypes.register): Promise<outputTypes.register> {
         params.body.password = await bcrypt.hash(params.body.password, 10)
-        var result = await UserModel.create(params.body)
+        let result = await UserModel.create(params.body)
 
         errorHelper.createError({
             result,
@@ -55,7 +55,7 @@ export class AuthLogic {
 
     @deleteId
     static async getUser(username: string): Promise<commonTypes.user> {
-        var user = await UserModel.findOne({ username })
+        let user = await UserModel.findOne({ username })
 
         errorHelper.getError({
             result: user,
