@@ -17,7 +17,7 @@ export class AuthController {
         if (!(await AuthLogic.register({ body: req.body }))) next()
 
         req.session.user = await AuthLogic.getUser(req.body.username)
-        res.json(returnFormatter({ data: true }))
+        res.json(returnFormatter({ data: !!req.session.user }))
     }
 
     @ahandler
@@ -39,11 +39,11 @@ export class AuthController {
             }
         })
 
-        res.json(returnFormatter({ data: true }))
+        res.json(returnFormatter({ data: !!req.session.user }))
     }
 
     @ahandler
     static async check(req: Request, res: Response): Promise<void> {
-        res.json(returnFormatter({ data: !req.session.user ? false : await AuthLogic.getUser(req.session.user!.username) }))
+        res.json(returnFormatter({ data: !!req.session.user }))
     }
 }
