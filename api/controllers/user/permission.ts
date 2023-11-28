@@ -6,16 +6,27 @@ import { Request, Response, NextFunction } from 'express'
 
 const formatter = wrapper(PermissionLogic)
 
+type status = {
+    next: boolean
+    continue: boolean
+}
+
 export class PermissionController {
     @ahandler
     @formatter
-    static async deletePermission(req: Request, res: Response, next: NextFunction): Promise<void> {}
+    static async deletePermission(req: Request, res: Response, next: NextFunction): Promise<status | void> {
+        throw new Error('Not implemented yet')
+    }
 
     @ahandler
     @formatter
-    static async getPermission(req: Request, res: Response, next: NextFunction): Promise<void> {}
+    static async getPermission(req: Request, res: Response, next: NextFunction): Promise<status | void> {
+        throw new Error('Not implemented yet')
+    }
 
     @ahandler
     @formatter
-    static async addPermission(req: Request, res: Response, next: NextFunction): Promise<void> {}
+    static async addPermission(req: Request, res: Response, next: NextFunction): Promise<status | void> {
+        throw new Error('Not implemented yet')
+    }
 }
