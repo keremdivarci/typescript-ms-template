@@ -55,13 +55,17 @@ export class AuthLogic {
 
     @deleteId
     static async getUser(username: string): Promise<commonTypes.user> {
-        let user = await UserModel.findOne({ username })
+        let user = await UserModel.findOne(
+            { username },
+            {
+                password: 0
+            }
+        )
 
         errorHelper.getError({
             result: user,
             name: 'User'
         })
-
         return user!.toObject() as commonTypes.user
     }
 

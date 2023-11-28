@@ -12,7 +12,7 @@ export interface addPermission {
     username?: string;
   };
   user: {
-    permissions: any;
+    permissions?: any;
     username: string;
   };
 }
@@ -21,12 +21,12 @@ export interface getPermission {
   body?: {
     password: string;
     username: string;
-  };
+  } | object;
   query: {
     username?: string;
   };
-  user: {
-    permissions: any;
+  user?: {
+    permissions?: any;
     username: string;
   };
 }
@@ -44,7 +44,7 @@ export interface logout {
   body?: undefined;
   query?: undefined;
   user: {
-    permissions: any;
+    permissions?: any;
     username: string;
   };
 }
@@ -67,7 +67,7 @@ export interface removePermission {
     username?: string;
   };
   user: {
-    permissions: any;
+    permissions?: any;
     username: string;
   };
 }

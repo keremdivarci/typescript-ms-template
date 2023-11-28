@@ -12,7 +12,7 @@ export class User {
     public password!: string
 
     @prop({ required: true, default: {} })
-    public permissions: any
+    public permissions!: any
 }
 
 export const UserModel = getModelForClass(User)

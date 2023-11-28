@@ -20,8 +20,7 @@ export const logout = base.keys({
 })
 
 export const getPermission = base.keys({
-    query: query.required(),
-    user: user.required()
+    query: query.required()
 })
 
 export const addPermission = base.keys({

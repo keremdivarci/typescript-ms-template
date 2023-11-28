@@ -12,20 +12,20 @@ export interface base {
   body?: {
     password: string;
     username: string;
-  };
+  } | object;
   query?: {
     username?: string;
   };
   user?: {
-    permissions: any;
+    permissions?: any;
     username: string;
   };
 }
 
-export interface body {
+export type body = {
   password: string;
   username: string;
-}
+} | object;
 
 export type jwtToken = string;
 
@@ -34,6 +34,6 @@ export interface query {
 }
 
 export interface user {
-  permissions: any;
+  permissions?: any;
   username: string;
 }
