@@ -4,11 +4,11 @@
  */
 
 export interface addPermission {
-  body?: {
+  body: {
     permission: any;
-    permissionPath: string[];
   };
-  query?: {
+  query: {
+    permissionPath?: string[];
     username?: string;
   };
   user: {
@@ -60,10 +60,11 @@ export interface register {
 
 export interface removePermission {
   body?: {
-    permission: any;
+    password: string;
+    username: string;
+  } | object;
+  query: {
     permissionPath: string[];
-  };
-  query?: {
     username?: string;
   };
   user: {

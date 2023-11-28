@@ -14,19 +14,13 @@ type status = {
 export class PermissionController {
     @ahandler
     @formatter
-    static async deletePermission(req: Request, res: Response, next: NextFunction): Promise<status | void> {
-        throw new Error('Not implemented yet')
-    }
+    static async removePermission(req: Request, res: Response, next: NextFunction): Promise<status | void> {}
 
     @ahandler
     @formatter
-    static async getPermission(req: Request, res: Response, next: NextFunction): Promise<status | void> {
-        throw new Error('Not implemented yet')
-    }
+    static async getPermission(req: Request, res: Response, next: NextFunction): Promise<status | void> {}
 
     @ahandler
     @formatter
-    static async addPermission(req: Request, res: Response, next: NextFunction): Promise<status | void> {
-        throw new Error('Not implemented yet')
-    }
+    static async addPermission(req: Request, res: Response, next: NextFunction): Promise<status | void> {}
 }

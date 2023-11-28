@@ -8,6 +8,6 @@ export const logout = Joi.boolean()
 
 export const getPermission = Joi.any()
 
-export const addPermission = Joi.boolean()
+export const addPermission = Joi.any()
 
-export const removePermission = Joi.boolean()
+export const removePermission = Joi.any()

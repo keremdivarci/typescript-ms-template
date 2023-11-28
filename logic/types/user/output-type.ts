@@ -3,7 +3,7 @@
  * Do not modify this file manually
  */
 
-export type addPermission = boolean;
+export type addPermission = any;
 
 export type getPermission = any;
 
@@ -13,4 +13,4 @@ export type logout = boolean;
 
 export type register = boolean;
 
-export type removePermission = boolean;
+export type removePermission = any;

@@ -24,17 +24,22 @@ export const getPermission = base.keys({
 })
 
 export const addPermission = base.keys({
+    user: user.required(),
+    query: query
+        .keys({
+            permissionPath: Joi.array().items(Joi.string())
+        })
+        .required(),
     body: Joi.object({
-        permissionPath: Joi.array().items(Joi.string()).required(),
         permission: Joi.any().required()
-    }),
-    user: user.required()
+    }).required()
 })
 
 export const removePermission = base.keys({
-    body: Joi.object({
-        permissionPath: Joi.array().items(Joi.string()).required(),
-        permission: Joi.any().required()
-    }),
-    user: user.required()
+    user: user.required(),
+    query: query
+        .keys({
+            permissionPath: Joi.array().items(Joi.string()).required()
+        })
+        .required()
 })
