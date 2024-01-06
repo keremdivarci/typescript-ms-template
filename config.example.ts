@@ -1,6 +1,8 @@
 import { validate } from 'backend-helper-kit'
 import Joi from 'joi'
 
+const name = 'template-ms'
+
 type configType = {
     PORT: number
     MONGO_CONNECTION: string
@@ -19,12 +21,12 @@ const configSchema = Joi.object({
     ENV: Joi.string().valid('development', 'production').required()
 })
 
-export const config: configType = validate(
+export var config: configType = validate(
     {
         PORT: 8000,
-        MONGO_CONNECTION: 'mongodb://127.0.0.1:27017/template-ms',
+        MONGO_CONNECTION: `mongodb://127.0.0.1:27017/${name}`,
         MODULE_KEY: '123',
-        MODULE_NAME: 'template-ms',
+        MODULE_NAME: name,
         SESSION_SECRET: '123',
         ENV: 'development'
     },
