@@ -2,8 +2,12 @@ import { convert } from 'backend-helper-kit'
 import fs from 'fs'
 const data = [
     {
-        schemaDirectory: './logic/validators/user',
-        typeOutputDirectory: './logic/types/user'
+        schemaDirectory: './logic/validators/auth',
+        typeOutputDirectory: './logic/types/auth'
+    },
+    {
+        schemaDirectory: './logic/validators/template',
+        typeOutputDirectory: './logic/types/template'
     }
 ]
 

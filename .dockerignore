@@ -1,0 +1,32 @@
+
+#MongoDB
+./data/db
+./data
+
+#VS Code Config
+./.vscode
+
+#Node Modules
+./node_modules
+
+#Uploads
+./uploads
+
+#env
+.env
+.env.example
+
+#Docker Files
+docker-compose.yml
+Dockerfile
+
+#Git / Github
+.gitignore
+.gitattributes
+.github
+
+#Prettier
+.prettierrc
+
+#Nodemon
+nodemon.json

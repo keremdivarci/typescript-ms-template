@@ -1,12 +1,6 @@
 {
-  "watch": [
-    "./"
-  ],
-  "ext": "ts,json,env",
-  "ignore": [
-    "./node_modules",
-    "./dist",
-    "./logic/types"
-  ],
-  "exec": "ts-node convert.ts && ts-node ./index.ts"
+    "watch": ["./"],
+    "ext": "ts,json,env",
+    "ignore": ["./node_modules", "./dist", "./logic/types"],
+    "exec": "ts-node convert.ts && ts-node ./index.ts"
 }

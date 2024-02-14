@@ -3,11 +3,11 @@ import { config } from '../config'
 
 Mongoose.connect(config.MONGO_CONNECTION)
     .then(() => {
-        console.log(`Connected to the database! ✅`)
+        console.log(`Connected to the => ${config.MONGO_CONNECTION}`)
     })
-    .catch((error) => {
-        console.log(`Error connecting to the database! ❌`)
-        console.log(error.message)
+    .catch((err) => {
+        console.log(`Could not connect to the => ${config.MONGO_CONNECTION}`)
+        console.log('Error: ', err)
     })
 
 export { connection }

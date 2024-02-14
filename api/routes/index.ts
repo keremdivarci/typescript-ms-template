@@ -1,9 +1,11 @@
-import { authRouter } from './user/auth'
-import { permissionRouter } from './user/permission'
+import { authRouter } from './auth/auth.routes'
+import { templateRouter } from './template/template.routes'
+import { templateImageRouter } from './template/image.routes'
 
 import { Express } from 'express'
 
 export function addRoutes(app: Express) {
     app.use('/auth', authRouter)
-    app.use('/permission', permissionRouter)
+    app.use('/template', templateRouter)
+    app.use('/template/image', templateImageRouter)
 }

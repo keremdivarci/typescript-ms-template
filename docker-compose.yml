@@ -1,0 +1,39 @@
+version: '3.7'
+services:
+    #MongoDB service
+    db:
+        container_name: template-ms-db
+        image: mongo:latest
+        restart: always
+        ports:
+            - 27018:27017
+        volumes:
+            - ./data/db:/data/db
+        networks:
+            - template-network
+    #Template Microservice
+    template-ms:
+        container_name: template-ms
+        #image: 'insert image URL here, remove if working on local machine'
+        build:
+            context: .
+            dockerfile: Dockerfile
+        environment:
+            - PORT=${PORT}
+            - MONGO_CONNECTION=${MONGO_CONNECTION}
+            - MODULE_KEY=${MODULE_KEY}
+            - ENV=${ENV}
+            - SESSION_SECRET=${SESSION_SECRET}
+        restart: always
+        ports:
+            - ${PORT}:${PORT}
+        volumes:
+            - ./uploads:/uploads
+        networks:
+            - template-network
+        depends_on:
+            - db
+
+networks:
+    template-network:
+        driver: bridge

@@ -4,23 +4,27 @@ import MongoStore from 'connect-mongo'
 
 import { config } from '../../config'
 
-import type { user } from '../../logic/types/user/common'
+import type { userSession } from '../../logic/types/auth/common'
 
 declare module 'express-session' {
     interface SessionData {
-        user: user
+        user: userSession
         cookie: Cookie
     }
 }
 
 export function createSession(app: Express) {
+    app.set('trust proxy', 1)
     app.use(
         Session({
-            name: 'PROJECT_PHPSESSID',
+            name: 'TEMPLATE_MS_SESSION',
             store: MongoStore.create({ mongoUrl: config.MONGO_CONNECTION }),
             secret: config.SESSION_SECRET,
-            saveUninitialized: true,
-            resave: false
+            saveUninitialized: false,
+            resave: false,
+            cookie: {
+                maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+            }
         })
     )
 }

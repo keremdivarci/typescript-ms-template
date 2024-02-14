@@ -126,6 +126,14 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+#VS Code Config
 .vscode/*
 
-config.ts
+#.DS_STORE Files
+.DS_Store
+
+#Uploads
+uploads/*
+
+#Docker Volume
+data
