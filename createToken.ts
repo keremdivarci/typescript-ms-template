@@ -8,9 +8,9 @@ function encode(data: object, key: string, expiresIn = '1h') {
 console.log(
     encode(
         {
-            id: '4269411',
-            email: 'mkd@mkd.com',
-            name: 'Kerem'
+            id: '',
+            email: '',
+            name: ''
         },
         config.MODULE_KEY,
         '1h'
