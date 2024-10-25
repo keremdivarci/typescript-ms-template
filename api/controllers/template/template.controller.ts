@@ -1,45 +1,30 @@
-import { TemplateLogic } from '../../../logic/models/template'
-import { ahandler as async_handler, returnFormatter } from 'backend-helper-kit'
-
 import { Request, Response, NextFunction } from 'express'
-import { userSession } from '../../../logic/types/auth/common'
+import { inject, Lifecycle, scoped } from 'tsyringe'
+import { ahandler as async_handler } from 'backend-helper-kit'
+import { TemplateService } from '../../../services/template.service'
 
-import { parseFormData } from '../../../logic/utils/parseFormData'
-import { createTemplate, updateTemplate } from '../../../logic/types/template/input/template.input'
-
+@scoped(Lifecycle.ContainerScoped)
 export class TemplateController {
+    constructor(@inject(TemplateService) private templateService: TemplateService) {}
+
     @async_handler
-    static async queryTemplates(req: Request, res: Response, next: NextFunction) {
-        res.json((await TemplateLogic.queryTemplates({ query: req.query })).result)
+    async queryTemplates(req: Request, res: Response, next: NextFunction) {
+        const result = await this.templateService.queryTemplates(req.query)
+        res.json(result)
     }
-
     @async_handler
-    static async createTemplate(req: Request, res: Response, next: NextFunction) {
-        const acceptedMimetypes = ['image/png', 'image/jpg', 'image/jpeg']
-        const data = await parseFormData(req, acceptedMimetypes, ['records'])
-        const result = await TemplateLogic.createTemplate({
-            body: { ...data.fields, files: data.files } as createTemplate['body'] /*Modify this line to match the type of the body*/,
-            user: req.session.user as userSession
-        })
-
-        return res.json(returnFormatter(result))
+    async createTemplate(req: Request, res: Response, next: NextFunction) {
+        const result = await this.templateService.createTemplate(req)
+        res.json(result)
     }
-
     @async_handler
-    static async updateTemplate(req: Request, res: Response, next: NextFunction) {
-        const acceptedMimetypes = ['image/png', 'image/jpg', 'image/jpeg']
-        const data = await parseFormData(req, acceptedMimetypes, ['records'])
-        const result = await TemplateLogic.updateTemplate({
-            body: { ...data.fields, files: data.files } as updateTemplate['body'] /*Modify this line to match the type of the body*/,
-            user: req.session.user as userSession
-        })
-        return res.json(returnFormatter(result))
+    async updateTemplate(req: Request, res: Response, next: NextFunction) {
+        const result = await this.templateService.updateTemplate(req)
+        res.json(result)
     }
-
     @async_handler
-    static async deleteTemplate(req: Request, res: Response, next: NextFunction) {
-        const id = req.params.id as string
-        const result = await TemplateLogic.deleteTemplate({ query: { id }, user: req.session.user as userSession })
-        return res.json(returnFormatter(result))
+    async deleteTemplate(req: Request, res: Response, next: NextFunction) {
+        const result = await this.templateService.deleteTemplate(req.params.id)
+        res.json(result)
     }
 }

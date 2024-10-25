@@ -3,23 +3,9 @@
  * Do not modify this file manually
  */
 
-export interface checkSession {
-  message?: string;
-  result: any;
-}
+import { UserSession } from '../..';
 
-export interface login {
+export interface LoginOutput {
   message?: string;
-  result: {
-    email: string;
-    exp: number;
-    iat: number;
-    id: string;
-    name: string;
-  };
-}
-
-export interface logout {
-  message?: string;
-  result: any;
+  result: UserSession;
 }

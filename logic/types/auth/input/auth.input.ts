@@ -3,34 +3,23 @@
  * Do not modify this file manually
  */
 
-export interface checkSession {
+import { UserSession } from '../..';
+import { LoginSchema } from '..';
+
+export interface CheckSessionInput {
   body?: undefined;
   query?: undefined;
-  user: {
-    email: string;
-    exp: number;
-    iat: number;
-    id: string;
-    name: string;
-  };
+  user: UserSession;
 }
 
-export interface login {
-  body: {
-      token: string;
-    };
+export interface LoginInput {
+  body: LoginSchema;
   query?: undefined;
   user?: undefined;
 }
 
-export interface logout {
+export interface LogoutInput {
   body?: undefined;
   query?: undefined;
-  user: {
-    email: string;
-    exp: number;
-    iat: number;
-    id: string;
-    name: string;
-  };
+  user: UserSession;
 }

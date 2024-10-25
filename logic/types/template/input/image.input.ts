@@ -3,47 +3,25 @@
  * Do not modify this file manually
  */
 
-export interface queryTemplateImage {
+import { QueryImageSchema, UploadImageSchema } from '..';
+import { UserSession, BaseIdInput } from '../..';
+
+export interface QueryTemplateImageInput {
   body?: undefined;
-  params: {
-    id: string;
-  };
+  params: QueryImageSchema;
   query?: undefined;
-  user?: {
-    email: string;
-    exp: number;
-    iat: number;
-    id: string;
-    name: string;
-  };
+  user?: UserSession;
 }
 
-export interface removeTemplateImage {
+export interface RemoveTemplateImageInput {
   body?: undefined;
-  params: {
-    id: string;
-  };
+  params: BaseIdInput;
   query?: undefined;
-  user: {
-    email: string;
-    exp: number;
-    iat: number;
-    id: string;
-    name: string;
-  };
+  user?: UserSession;
 }
 
-export interface uploadTemplateImage {
-  body: {
-    files: any;
-    id: string;
-  };
+export interface UploadTemplateImageInput {
+  body: UploadImageSchema;
   query?: undefined;
-  user: {
-    email: string;
-    exp: number;
-    iat: number;
-    id: string;
-    name: string;
-  };
+  user?: UserSession;
 }

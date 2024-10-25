@@ -1,15 +1,15 @@
 import { decode, validate } from 'backend-helper-kit'
 
-import { userSession } from '../../types/auth/common'
-import * as inputTypes from '../../types/auth/input/auth.input'
-import * as outputTypes from '../../types/auth/output/auth.output'
+import { UserSession } from '../../types/common'
+import { LoginInput } from '../../types/auth/input'
+import { LoginOutput } from '../../types/auth/output/auth.output'
 
-import * as validators from '../../validators/auth/common'
+import { loginSchema } from '../../validators/auth/auth.schemas'
 import { config } from '../../../config'
 
 export class AuthLogic {
-    static async login(params: inputTypes.login): Promise<outputTypes.login> {
-        const data = validate(params.body, validators.login)
-        return { result: decode(data.token, config.MODULE_KEY) as userSession }
+    static async login(params: LoginInput): Promise<LoginOutput> {
+        const data = validate(params.body, loginSchema)
+        return { result: decode(data.token, config.MODULE_KEY) as UserSession }
     }
 }

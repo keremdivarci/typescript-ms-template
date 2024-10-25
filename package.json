@@ -12,7 +12,8 @@
     "joi-to-swagger": "^6.2.0",
     "jsonwebtoken": "^9.0.0",
     "morgan": "^1.10.0",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "tsyringe": "^4.8.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

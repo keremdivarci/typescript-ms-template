@@ -1,22 +1,31 @@
 import Joi from 'joi'
-import { baseInput, queryTemplatesData, createTemplateData, updateTemplateData, removeTemplateData } from '../common'
-import { userSession } from '../../auth/common'
+import { queryTemplatesSchema, createTemplateSchema, updateTemplateSchema } from '../template.schemas'
+import { baseIdInput, baseInput, userSession } from '../../common'
 
-export const queryTemplates = baseInput.keys({
-    user: userSession.optional(),
-    body: Joi.forbidden(),
-    query: queryTemplatesData.required()
-})
+export const queryTemplates = baseInput
+    .keys({
+        user: userSession.optional(),
+        body: Joi.forbidden(),
+        query: queryTemplatesSchema.required()
+    })
+    .meta({ className: 'QueryTemplatesInput' })
 
-export const createTemplate = baseInput.keys({
-    body: createTemplateData.required()
-})
+export const createTemplate = baseInput
+    .keys({
+        user: userSession.required(),
+        body: createTemplateSchema.required()
+    })
+    .meta({ className: 'CreateTemplateInput' })
 
-export const updateTemplate = baseInput.keys({
-    body: updateTemplateData.required()
-})
+export const updateTemplate = baseInput
+    .keys({
+        body: updateTemplateSchema.required()
+    })
+    .meta({ className: 'UpdateTemplateInput' })
 
-export const removeTemplate = baseInput.keys({
-    body: Joi.forbidden(),
-    query: removeTemplateData.required()
-})
+export const removeTemplate = baseInput
+    .keys({
+        body: Joi.forbidden(),
+        query: baseIdInput.required()
+    })
+    .meta({ className: 'RemoveTemplateInput' })

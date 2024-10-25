@@ -4,11 +4,11 @@ import MongoStore from 'connect-mongo'
 
 import { config } from '../../config'
 
-import type { userSession } from '../../logic/types/auth/common'
+import type { UserSession } from '../../logic/types/common'
 
 declare module 'express-session' {
     interface SessionData {
-        user: userSession
+        user: UserSession
         cookie: Cookie
     }
 }

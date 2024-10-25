@@ -1,5 +1,5 @@
 import { TemplateModel } from '../../../database/models/template'
-import { createTemplateSchema, updateTemplateSchema } from '../../../logic/validators/template/common'
+import { createTemplateSchema, updateTemplateSchema } from '../../../logic/validators/template/template.schemas'
 //import { queryImageSchema, uploadImageSchema, removeImageSchema } from '../../../logic/validators/template/common'
 
 //Swagger Definitions

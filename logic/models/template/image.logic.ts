@@ -1,16 +1,14 @@
 import { NotFoundError, validate, FileCorruptedError } from 'backend-helper-kit'
 import fs from 'fs'
-
-import * as inputTypes from '../../types/template/input/image.input'
-//import * as outputTypes from '../../types/template/output/image.output'
-import * as validationTypes from '../../types/template/common'
-
-import * as validators from '../../validators/template/common'
 import { File } from 'formidable'
 
+import { QueryTemplateImageInput, RemoveTemplateImageInput } from '../../types/template/input/image.input'
+import { BaseOutput } from '../../types'
+import { queryTemplateImage, removeTemplateImage, uploadTemplateImage } from '../../validators/template/input/image.input'
+
 export class TemplatePhotoLogic {
-    static async queryImage(params: inputTypes.queryTemplateImage): Promise<validationTypes.baseOutput> {
-        const data = validate(params.params, validators.queryImageData) as validationTypes.queryImageData
+    static async queryImage(params: QueryTemplateImageInput): Promise<BaseOutput> {
+        const data = validate(params.params, queryTemplateImage)
         const imagePath = `./uploads/${data.id}.jpg`
 
         if (!fs.existsSync(imagePath)) {
@@ -22,8 +20,8 @@ export class TemplatePhotoLogic {
         }
     }
 
-    static async uploadImage(params: any): Promise<validationTypes.baseOutput> {
-        const data = validate(params.body, validators.uploadImageData) as validationTypes.uploadImageData
+    static async uploadImage(params: any): Promise<BaseOutput> {
+        const data = validate(params.body, uploadTemplateImage)
         const imagePath = `./uploads/${data.id}.jpg`
 
         const image = data.files.image as File
@@ -37,8 +35,8 @@ export class TemplatePhotoLogic {
         }
     }
 
-    static async deleteImage(params: inputTypes.removeTemplateImage): Promise<validationTypes.baseOutput> {
-        const data = validate(params.params, validators.removeImageData) as validationTypes.removeImageData
+    static async deleteImage(params: RemoveTemplateImageInput): Promise<BaseOutput> {
+        const data = validate(params.params, removeTemplateImage)
         const imagePath = `./uploads/${data.id}.jpg`
 
         if (!fs.existsSync(imagePath)) {

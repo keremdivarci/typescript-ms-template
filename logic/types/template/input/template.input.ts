@@ -3,64 +3,29 @@
  * Do not modify this file manually
  */
 
-export interface createTemplate {
-  body: {
-    files: any;
-    name: string;
-    records: object[];
-  };
+import { CreateTemplateSchema, QueryTemplatesSchema, UpdateTemplateSchema } from '..';
+import { UserSession, BaseIdInput } from '../..';
+
+export interface CreateTemplateInput {
+  body: CreateTemplateSchema;
   query?: undefined;
-  user: {
-    email: string;
-    exp: number;
-    iat: number;
-    id: string;
-    name: string;
-  };
+  user: UserSession;
 }
 
-export interface queryTemplates {
+export interface QueryTemplatesInput {
   body?: undefined;
-  query: {
-    page?: number;
-    pageSize?: number;
-  };
-  user?: {
-    email: string;
-    exp: number;
-    iat: number;
-    id: string;
-    name: string;
-  };
+  query: QueryTemplatesSchema;
+  user?: UserSession;
 }
 
-export interface removeTemplate {
+export interface RemoveTemplateInput {
   body?: undefined;
-  query: {
-    id: string;
-  };
-  user: {
-    email: string;
-    exp: number;
-    iat: number;
-    id: string;
-    name: string;
-  };
+  query: BaseIdInput;
+  user?: UserSession;
 }
 
-export interface updateTemplate {
-  body: {
-    files?: any;
-    id: string;
-    name?: string;
-    records?: any[];
-  };
+export interface UpdateTemplateInput {
+  body: UpdateTemplateSchema;
   query?: undefined;
-  user: {
-    email: string;
-    exp: number;
-    iat: number;
-    id: string;
-    name: string;
-  };
+  user?: UserSession;
 }

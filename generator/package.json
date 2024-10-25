@@ -1,0 +1,26 @@
+{
+  "name": "endpoint-generator",
+  "version": "1.0.0",
+  "description": "Endpoint logic/component generator for ExpressJS apps",
+  "exports": "./index.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "tsx index.ts $all"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "inquirer": "^12.0.0",
+    "tsx": "^4.19.1",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/yargs": "^17.0.33",
+    "typescript": "^5.6.3"
+  }
+}

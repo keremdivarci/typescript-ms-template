@@ -1,20 +1,20 @@
 import { TemplateModel } from '../../../database/models/template'
-import { ErrorHelper, validate } from 'backend-helper-kit'
+import { ErrorHelper } from 'backend-helper-kit'
 
-import * as inputTypes from '../../types/template/input/template.input'
-//import * as outputTypes from '../../types/template/output/template.output'
-import * as validationTypes from '../../types/template/common'
+import { filterQuerySize, defaultProjection, asyncValidator } from '../../../helpers'
+import { saveFile } from '../../../utils/saveFile'
 
-import * as validators from '../../validators/template/common'
-
-import { filterQuerySize, defaultProjection } from '../../helpers'
-import { saveFile } from '../../utils/saveFile'
+import * as inputTypes from '../../validators/template/input/template.input'
+import { CreateTemplateInput, QueryTemplatesInput, RemoveTemplateInput, UpdateTemplateInput } from '../../types/template/input/template.input'
+import { BaseOutput } from '../../types/common'
+import { config } from '../../../config'
 
 const errorHelper = new ErrorHelper(__filename)
 
+@asyncValidator(config, inputTypes)
 export class TemplateLogic {
-    static async queryTemplates(params: inputTypes.queryTemplates): Promise<validationTypes.baseOutput> {
-        const data = validate(params.query, validators.queryTemplatesData) as validationTypes.queryTemplatesData
+    static async queryTemplates(params: QueryTemplatesInput): Promise<BaseOutput> {
+        const data = params.query
         let result
         if (data.pageSize === -1) {
             result = await TemplateModel.find({ isDeleted: false }).sort({ _id: -1 }).select(defaultProjection).lean().exec()
@@ -31,8 +31,8 @@ export class TemplateLogic {
         return { result }
     }
 
-    static async createTemplate(params: inputTypes.createTemplate): Promise<validationTypes.baseOutput> {
-        const data = validate(params.body, validators.createTemplateData) as validationTypes.createTemplateData
+    static async createTemplate(params: CreateTemplateInput): Promise<BaseOutput> {
+        const data = params.body
 
         const template = new TemplateModel() //Create new template instance
         const fileSaved = await saveFile(data.files as any, String(template._id), 'uploads', 1) //Save file to disk
@@ -43,12 +43,11 @@ export class TemplateLogic {
 
         errorHelper.createError({ result })
 
-        return { result: !!result, message: result ? 'Tempate has been created successfully!' : undefined }
+        return { result: !!result, message: result ? 'Template has been created successfully!' : undefined }
     }
 
-    static async updateTemplate(params: inputTypes.updateTemplate): Promise<validationTypes.baseOutput> {
-        const data = validate(params.body, validators.updateTemplateData) as validationTypes.updateTemplateData
-
+    static async updateTemplate(params: UpdateTemplateInput): Promise<BaseOutput> {
+        const data = params.body
         if (data.files) {
             await saveFile(data.files, data.id, 'uploads', 1)
         }
@@ -58,8 +57,8 @@ export class TemplateLogic {
         return { result: result.modifiedCount > 0, message: result.modifiedCount > 0 ? 'Event updated successfully!' : undefined }
     }
 
-    static async deleteTemplate(params: inputTypes.removeTemplate): Promise<validationTypes.baseOutput> {
-        const data = validate(params.query, validators.removeTemplateData) as validationTypes.removeTemplateData
+    static async deleteTemplate(params: RemoveTemplateInput): Promise<BaseOutput> {
+        const data = params.query
         const result = await TemplateModel.findByIdAndUpdate(data.id, { isDeleted: true })
 
         errorHelper.deleteError({ result })

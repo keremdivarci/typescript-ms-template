@@ -1,4 +1,4 @@
-import { loginSchema } from '../../../logic/validators/auth/common'
+import { loginSchema } from '../../../logic/validators/auth/auth.schemas'
 
 //Swagger Definitions
 const swCheckSession = {
